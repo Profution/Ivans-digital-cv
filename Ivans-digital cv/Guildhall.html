@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Worcester Guildhall Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .result {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Worcester Guildhall Heritage Quiz</h1>
+
+  <form id="quizForm">
+    <div class="question">
+      <label>1. Was the original Worcester Guildhall built in the 18th century?</label><br>
+      <input type="radio" name="q1" value="Yes" required> Yes
+      <input type="radio" name="q1" value="No"> No
+    </div>
+
+    <div class="question">
+      <label>2. Is the current Guildhall an example of Queen Anne architecture?</label><br>
+      <input type="radio" name="q2" value="Yes" required> Yes
+      <input type="radio" name="q2" value="No"> No
+    </div>
+
+    <div class="question">
+      <label>3. Are statues of Queen Victoria and Prince Albert featured on the facade of the Guildhall?</label><br>
+      <input type="radio" name="q3" value="Yes" required> Yes
+      <input type="radio" name="q3" value="No"> No
+    </div>
+
+    <div class="question">
+      <label>4. Can visitors explore prisoner cells inside the Guildhall?</label><br>
+      <input type="radio" name="q4" value="Yes" required> Yes
+      <input type="radio" name="q4" value="No"> No
+    </div>
+
+    <div class="question">
+      <label>5. Was the Grand Italianate Assembly Room designed by Thomas White?</label><br>
+      <input type="radio" name="q5" value="Yes" required> Yes
+      <input type="radio" name="q5" value="No"> No
+    </div>
+
+    <button type="submit">Submit Quiz</button>
+  </form>
+
+  <div id="result" class="result"></div>
+<button type="button" onclick="resetQuiz()">Reset Quiz</button>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const answers = {
+        q1: 'No',
+        q2: 'Yes',
+        q3: 'No',
+        q4: 'Yes',
+        q5: 'No'
+      };
+
+      let score = 0;
+
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      const result = document.getElementById('result');
+      result.textContent = `You scored ${score} out of 5.`;
+    });
+  </script>
+  <script>
+  function resetQuiz() {
+    document.getElementById('quizForm').reset();
+    document.getElementById('result').textContent = '';
+  }
+</script>
+</body>
+</html>
